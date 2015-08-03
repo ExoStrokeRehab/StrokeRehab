@@ -1,0 +1,11 @@
+Spectra Symbol Flex Sensor Data Sheet
+
+Tutorial: Flex Sensor with Arduino
+http://garagelab.com/profiles/blogs/tutorial-flex-sensor-with-arduino
+
+
+Method to interface and use Flexibend sensor
+http://tutorial.cytron.com.my/2012/08/10/method-to-interface-and-use-flexibend-sensor
+
+
+
