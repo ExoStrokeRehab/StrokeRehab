@@ -8,4 +8,4 @@ m.Logging = 0;
 [av, tav] = angvellog(m);
 pause(0.2)
 showLatestValues(m)
-%hi
+
