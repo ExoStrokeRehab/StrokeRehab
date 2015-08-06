@@ -3,6 +3,7 @@ m.Logging = 1;
 [o, t] = orientlog(m);
 pause(15)
 m.Logging = 0;
+<<<<<<< HEAD
 ang_Y = o(1:end, 1);
 vel_Y = ones(length(o), 1);
 
@@ -25,3 +26,10 @@ for j = 1:length(vel_Y)
     drawnow;
     pause(.05)
 end
+=======
+[av, tav] = angvellog(m);
+pause(0.2)
+showLatestValues(m)
+%hi
+%hi from Hau-yu
+>>>>>>> origin/master
