@@ -1,21 +1,11 @@
-%% CODE
-figure;
+a = [2 3 5];
+b = [1 1 0];
+c = a+b;
 
-% line function
-f = @(x) x.^2;
+starts = zeros(3,3);
+ends = [a;b;c];
+size 
 
-% x intervals
-xi = -5:0.1:5;
+axis equal
 
-% plot
-plot(xi,f(xi));
-
-% motions
-hold on;
-for i=1:length(xi)
-    h = plot(xi(i),f(xi(i)),'ro','MarkerFaceColor','r');
-    pause(0.01);
-    delete(h);
-end
-
-% END OF CODE
+quiver3([0], [0], [0], [1], [1], [1])
