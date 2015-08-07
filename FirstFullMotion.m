@@ -1,12 +1,14 @@
 clearvars -except m
 %Logging Data From Phone
-m.Logging = 1;
-pause(5)
 m.AccelerationSensorEnabled = 1;
 m.OrientationSensorEnabled = 1;
+m.Logging = 1;
+pause(5)
 [a, time1] = accellog(m);
 [o, time2] = orientlog(m);
 m.Logging = 0;
+
+
 
 %For Unequal Acceleration and Orientation Logs
 Size = min(length(time1),length(time2));
@@ -28,9 +30,11 @@ Helper2 = 9.81*ones(Size,1);
 %Conversion into Phi angle 
 Phi = Helper.*Phi_temp + Helper2;
 Phi = 9.1743*Phi;
+Ang_Y = Phi; %Storing Degree Angles
 Phi = pi/180*Phi;
 
 %Conversion into Theta angle
+Ang_X = Theta_temp; %Storing Degree Angles
 Theta = pi/180*Theta_temp;
 
 
@@ -72,4 +76,11 @@ for j = 1:Size
     hold off
 end
 
+
+m.AccelerationSensorEnabled = 0;
+m.OrientationSensorEnabled = 0;
+
 clearvars -except m
+
+
+
