@@ -13,38 +13,38 @@ m.Logging = 0;
 
 %For Unequal Acceleration and Orientation Logs
 Size = min(length(time1),length(time2));
-Phi_temp = a(1:end, 2);
-Theta_temp = o(1:end, 1);
+Phi_temp_1 = a(1:end, 2);
+Theta_temp_1 = o(1:end, 1);
 
 %Setting Matrices to equal sizes
-Phi_temp = Phi_temp(1:Size);
-Theta_temp = Theta_temp(1:Size);
+Phi_temp_1 = Phi_temp_1(1:Size);
+Theta_temp_1 = Theta_temp_1(1:Size);
 
 %Arm Vector Length
-Arm_L = 1;
-Arm = Arm_L*ones(Size, 1);
+Arm_L_1 = 1;
+Arm_1 = Arm_L_1*ones(Size, 1);
 
 %Helpers for conversion of Accelerometer Data
-Helper = -1*ones(Size,1);
-Helper2 = 9.81*ones(Size,1);
+Helper_1 = -1*ones(Size,1);
+Helper2_1 = 9.81*ones(Size,1);
 
 %Conversion into Phi angle 
-Phi = Helper.*Phi_temp + Helper2;
-Phi = 9.1743*Phi;
-Ang_Y = Phi; %Storing Degree Angles
-Phi = pi/180*Phi;
+Phi_1 = Helper_1.*Phi_temp_1 + Helper2_1;
+Phi_1 = 9.1743*Phi_1;
+Ang_Y_1 = Phi_1; %Storing Degree Angles
+Phi_1 = pi/180*Phi_1;
 
 %Conversion into Theta angle
-Ang_X = Theta_temp; %Storing Degree Angles
-Theta = pi/180*Theta_temp;
+Ang_X_1 = Theta_temp_1; %Storing Degree Angles
+Theta_1 = pi/180*Theta_temp_1;
 
 
 
 
 %Conversion from Spherical to Rectangular Coordinates 
-x = Arm.*sin(Phi).*cos(Theta);
-y = Arm.*sin(Phi).*sin(Theta);
-z = Arm.*cos(Phi);
+x = Arm_1.*sin(Phi_1).*cos(Theta_1);
+y = Arm_1.*sin(Phi_1).*sin(Theta_1);
+z = Arm_1.*cos(Phi_1);
 
 %Line/Axis Plots 
 t1a = -2:.01:2;
@@ -70,8 +70,16 @@ for j = 1:Size
     x2 = x(j);
     y2 = y(j);
     z2 = z(j);
-    quiver3([0],[0],[0],[x2],[y2],[z2]);
-    axis([-Arm_L Arm_L -Arm_L Arm_L -Arm_L Arm_L])
+    q = quiver3([0],[0],[0],[x2],[y2],[z2]);
+    q.Color = 'black';
+    q.LineWidth = 10;
+    q.Marker = 'h';
+    q.MarkerSize = 20;
+    q.MarkerFaceColor = 'blue';
+    q.MarkerEdgeColor = 'blue';
+    q.ShowArrowHead = 'on';
+    q.AlignVertexCenters = 'on';
+    axis([-2 2 -2 2 -2 2])
     drawnow
     pause(.03)
     hold off
@@ -84,11 +92,11 @@ m.OrientationSensorEnabled = 0;
 
 %Writing Data to table:
 Time = time1(1:Size);
-Arm_Length = Arm;
-Phi = Ang_Y;
-Theta = Ang_X;
+Arm_Length = Arm_1;
+Phi_1 = Ang_Y_1;
+Theta_1 = Ang_X_1;
 
-T = table(Time, Arm_Length, Phi, Theta);
+T = table(Time, Arm_Length, Phi_1, Theta_1);
 writetable(T, 'ArmMotionData.csv', 'WriteRowNames', true);
 
 type 'ArmMotionData.csv'
