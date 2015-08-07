@@ -77,9 +77,20 @@ for j = 1:Size
 end
 
 
+
 m.AccelerationSensorEnabled = 0;
 m.OrientationSensorEnabled = 0;
 
+%Writing Data to table:
+Time = time1(1:Size);
+Arm_Length = Arm;
+Phi = Ang_Y;
+Theta = Ang_X;
+
+T = table(Time, Arm_Length, Phi, Theta);
+writetable(T, 'ArmMotionData.csv', 'WriteRowNames', true);
+
+type 'ArmMotionData.csv'
 clearvars -except m
 
 
