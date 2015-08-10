@@ -198,4 +198,22 @@ for j = 1:Size
     pause(.005)
     hold off
 end
+
+%Table Var Names - for min and max export
+Upper_Arm_Phi = [UAPmax; Upper_Arm_Phi_max; UAPmin; Upper_Arm_Phi_min];
+Upper_Arm_Theta = [UATmax; Upper_Arm_Theta_max; UATmin; Upper_Arm_Theta_min];
+Forearm_Phi = [FPmax;Forearm_Phi_max;FPmin; Forearm_Phi_min];
+Forearm_Theta = [FTmax;Forearm_Theta_max; FTmin; Forearm_Theta_min];
+Hand_Phi = [HPmax; Hand_Phi_max; HPmin; Hand_Phi_min];
+Hand_Theta = [HTmax; Hand_Theta_max; HTmin; Hand_Theta_min];
+
+RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at which Min occurred'};
+
+
+%Make and export CSV file with Min and Max values
+T = table(Upper_Arm_Phi, Upper_Arm_Theta, Forearm_Phi, Forearm_Theta, Hand_Phi, Hand_Theta, 'RowNames', RowNames);
+writetable(T, 'ArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
+
+%Type out CSV file in Command Window
+type 'ArmMotion_Min_Max_Data.csv'
 clearvars -except m
