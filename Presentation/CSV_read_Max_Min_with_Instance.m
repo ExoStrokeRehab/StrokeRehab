@@ -1,5 +1,5 @@
 clearvars -except m
-Data = csvread('LeftArmMotionData.csv', 1,0);
+Data = csvread('ArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
 Size = length(Time);
@@ -19,23 +19,35 @@ Arm_3 = Data(1:end, 8);
 %Arm 1------------------------------------------
 %Phi Angle Setter
 Upper_Arm_Phi = pi/180*Data(1:end, 3);
+[UAPmax, Upper_Arm_Phi_max] = max(Upper_Arm_Phi);
+[UAPmin, Upper_Arm_Phi_min] = min(Upper_Arm_Phi);
 
 %Theta Angle Setter
 Upper_Arm_Theta = pi/180*Data(1:end, 4);
+[UATmax, Upper_Arm_Theta_max] = max(Upper_Arm_Theta);
+[UATmin, Upper_Arm_Theta_min] = min(Upper_Arm_Theta);
 
 %Arm 2------------------------------------------
 %Phi Angle Setter
 Forearm_Phi = pi/180*Data(1:end, 6);
+[FPmax, Forearm_Phi_max] = max(Forearm_Phi);
+[FPmin, Forearm_Phi_min] = min(Forearm_Phi);
 
 %Theta Angle Setter
 Forearm_Theta = pi/180*Data(1:end, 7);
+[FTmax, Forearm_Theta_max] = max(Forearm_Theta);
+[FTmin, Forearm_Theta_min] = min(Forearm_Theta);
 
 %Arm 3------------------------------------------
 %Phi Angle Setter
 Hand_Phi = pi/180*Data(1:end, 9);
+[HPmax, Hand_Phi_max] = max(Forearm_Theta);
+[HPmin, Hand_Phi_min] = min(Forearm_Theta);
 
 %Theta Angle Setter
 Hand_Theta = pi/180*Data(1:end, 10);
+[HTmax, Hand_Theta_max] = max(Forearm_Theta);
+[HTmin, Hand_Theta_min] = min(Forearm_Theta);
 
 
 
@@ -114,7 +126,18 @@ for j = 1:Size
     
     %Arm_1
     q_1 = quiver3([x2_begin_1],[y2_begin_1],[z2_begin_1],[x2_1],[y2_1],[z2_1]);
-    q_1.Color = 'black';
+    switch(j)
+        case Upper_Arm_Phi_max
+            q_1.Color = 'blue';
+        case Upper_Arm_Phi_min
+            q_1.Color = 'red';
+        case Upper_Arm_Theta_max
+            q_1.Color = 'green';
+        case Upper_Arm_Theta_min
+            q_1.Color = 'm';
+        otherwise
+            q_1.Color = 'black';
+    end
     q_1.LineWidth = 10;
     q_1.Marker = 'h';
     q_1.MarkerSize = 20;
@@ -126,7 +149,18 @@ for j = 1:Size
     
     %Arm_2
     q_2 = quiver3([x2_begin_2],[y2_begin_2],[z2_begin_2],[x2_2],[y2_2],[z2_2]);
-    q_2.Color = 'black';
+    switch(j)
+        case Forearm_Phi_max
+            q_2.Color = 'blue';
+        case Forearm_Phi_min
+            q_2.Color = 'red';
+        case Forearm_Theta_max
+            q_2.Color = 'green';
+        case Forearm_Theta_min
+            q_2.Color = 'm';
+        otherwise
+            q_2.Color = 'black';
+    end
     q_2.LineWidth = 10;
     q_2.Marker = 'h';
     q_2.MarkerSize = 20;
@@ -138,7 +172,18 @@ for j = 1:Size
     
     %Arm_3
     q_3 = quiver3([x2_begin_3],[y2_begin_3],[z2_begin_3],[x2_3],[y2_3],[z2_3]);
-    q_3.Color = 'black';
+    switch(j)
+        case Hand_Phi_max
+            q_3.Color = 'blue';
+        case Hand_Phi_min
+            q_3.Color = 'red';
+        case Hand_Theta_max
+            q_3.Color = 'green';
+        case Hand_Theta_min
+            q_3.Color = 'm';
+        otherwise 
+            q_3.Color = 'black';
+    end
     q_3.LineWidth = 10;
     q_3.Marker = 'h';
     q_3.MarkerSize = 20;
@@ -150,7 +195,25 @@ for j = 1:Size
     
     axis([-5 5 -5 5 -5 5])
     drawnow
-    pause(.03)
-    hold off
+    pause(.005)
+    hold on
 end
+
+%Table Var Names - for min and max export
+Upper_Arm_Phi = [UAPmax; Upper_Arm_Phi_max; UAPmin; Upper_Arm_Phi_min];
+Upper_Arm_Theta = [UATmax; Upper_Arm_Theta_max; UATmin; Upper_Arm_Theta_min];
+Forearm_Phi = [FPmax;Forearm_Phi_max;FPmin; Forearm_Phi_min];
+Forearm_Theta = [FTmax;Forearm_Theta_max; FTmin; Forearm_Theta_min];
+Hand_Phi = [HPmax; Hand_Phi_max; HPmin; Hand_Phi_min];
+Hand_Theta = [HTmax; Hand_Theta_max; HTmin; Hand_Theta_min];
+
+RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at which Min occurred'};
+
+
+%Make and export CSV file with Min and Max values
+T = table(Upper_Arm_Phi, Upper_Arm_Theta, Forearm_Phi, Forearm_Theta, Hand_Phi, Hand_Theta, 'RowNames', RowNames);
+writetable(T, 'ArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
+
+%Type out CSV file in Command Window
+type 'ArmMotion_Min_Max_Data.csv'
 clearvars -except m

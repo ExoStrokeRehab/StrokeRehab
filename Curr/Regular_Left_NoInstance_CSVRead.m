@@ -1,4 +1,5 @@
-clearvars -except m
+function Regular_Left_NoInstance_CSVRead()
+
 Data = csvread('LeftArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
@@ -153,4 +154,4 @@ for j = 1:Size
     pause(.03)
     hold off
 end
-clearvars -except m
+
