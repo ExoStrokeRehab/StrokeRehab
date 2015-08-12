@@ -1,5 +1,5 @@
-clearvars -except m
-Data = csvread('LeftArmMotionData.csv', 1,0);
+function Min_Max_Right_NoInstance_CSVRead()
+Data = csvread('RightArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
 Size = length(Time);
@@ -18,36 +18,41 @@ Arm_3 = Data(1:end, 8);
 
 %Arm 1------------------------------------------
 %Phi Angle Setter
-Upper_Arm_Phi = pi/180*Data(1:end, 3);
+Upper_Arm_Phi = Data(1:end, 3);
 [UAPmax, Upper_Arm_Phi_max] = max(Upper_Arm_Phi);
 [UAPmin, Upper_Arm_Phi_min] = min(Upper_Arm_Phi);
+Upper_Arm_Phi = pi/180*Upper_Arm_Phi;
 
 %Theta Angle Setter
-Upper_Arm_Theta = pi/180*Data(1:end, 4);
+Upper_Arm_Theta = Data(1:end, 4);
 [UATmax, Upper_Arm_Theta_max] = max(Upper_Arm_Theta);
 [UATmin, Upper_Arm_Theta_min] = min(Upper_Arm_Theta);
+Upper_Arm_Theta = pi/180*Upper_Arm_Theta;
 
 %Arm 2------------------------------------------
 %Phi Angle Setter
-Forearm_Phi = pi/180*Data(1:end, 6);
+Forearm_Phi = Data(1:end, 6);
 [FPmax, Forearm_Phi_max] = max(Forearm_Phi);
 [FPmin, Forearm_Phi_min] = min(Forearm_Phi);
+Forearm_Phi = pi/180*Forearm_Phi;
 
 %Theta Angle Setter
-Forearm_Theta = pi/180*Data(1:end, 7);
+Forearm_Theta = Data(1:end, 7);
 [FTmax, Forearm_Theta_max] = max(Forearm_Theta);
 [FTmin, Forearm_Theta_min] = min(Forearm_Theta);
-
+Forearm_Theta = pi/180*Forearm_Theta;
 %Arm 3------------------------------------------
 %Phi Angle Setter
-Hand_Phi = pi/180*Data(1:end, 9);
-[HPmax, Hand_Phi_max] = max(Forearm_Theta);
-[HPmin, Hand_Phi_min] = min(Forearm_Theta);
+Hand_Phi = Data(1:end, 9);
+[HPmax, Hand_Phi_max] = max(Hand_Phi);
+[HPmin, Hand_Phi_min] = min(Hand_Phi);
+Hand_Phi = pi/180*Hand_Phi;
 
 %Theta Angle Setter
-Hand_Theta = pi/180*Data(1:end, 10);
-[HTmax, Hand_Theta_max] = max(Forearm_Theta);
-[HTmin, Hand_Theta_min] = min(Forearm_Theta);
+Hand_Theta = Data(1:end, 10);
+[HTmax, Hand_Theta_max] = max(Hand_Theta);
+[HTmin, Hand_Theta_min] = min(Hand_Theta);
+Hand_Theta = pi/180*Hand_Theta;
 
 
 
@@ -212,8 +217,8 @@ RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at
 
 %Make and export CSV file with Min and Max values
 T = table(Upper_Arm_Phi, Upper_Arm_Theta, Forearm_Phi, Forearm_Theta, Hand_Phi, Hand_Theta, 'RowNames', RowNames);
-writetable(T, 'ArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
+writetable(T, 'RightArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
 
 %Type out CSV file in Command Window
-type 'ArmMotion_Min_Max_Data.csv'
-clearvars -except m
+%type 'RightArmMotion_Min_Max_Data.csv'
+

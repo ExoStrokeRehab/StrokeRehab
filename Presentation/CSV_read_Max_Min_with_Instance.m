@@ -1,5 +1,5 @@
 clearvars -except m
-Data = csvread('ArmMotionData.csv', 1,0);
+Data = csvread('LeftArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
 Size = length(Time);

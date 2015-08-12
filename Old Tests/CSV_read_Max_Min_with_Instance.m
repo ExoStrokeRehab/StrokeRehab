@@ -196,7 +196,7 @@ for j = 1:Size
     axis([-5 5 -5 5 -5 5])
     drawnow
     pause(.005)
-    hold off
+    hold on
 end
 
 %Table Var Names - for min and max export
@@ -212,7 +212,7 @@ RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at
 
 %Make and export CSV file with Min and Max values
 T = table(Upper_Arm_Phi, Upper_Arm_Theta, Forearm_Phi, Forearm_Theta, Hand_Phi, Hand_Theta, 'RowNames', RowNames);
-writetable(T, 'ArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
+writetable(T, 'LeftArmMotion_Min_Max_Data.csv', 'WriteRowNames', true);
 
 %Type out CSV file in Command Window
 type 'ArmMotion_Min_Max_Data.csv'

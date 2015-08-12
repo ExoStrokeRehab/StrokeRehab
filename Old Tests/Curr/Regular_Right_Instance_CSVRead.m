@@ -1,5 +1,5 @@
-clearvars -except m
-Data = csvread('ArmMotionData.csv', 1,0);
+function Regular_Right_Instance_CSVRead()
+Data = csvread('RightArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
 Size = length(Time);
@@ -151,6 +151,5 @@ for j = 1:Size
     axis([-5 5 -5 5 -5 5])
     drawnow
     pause(.03)
-    hold off
+    hold on
 end
-clearvars -except m

@@ -1,4 +1,4 @@
-clearvars -except m
+function Regular_Right_Instance_CSVRead()
 Data = csvread('LeftArmMotionData.csv', 1,0);
 
 Time = Data(1:end, 1);
@@ -86,71 +86,34 @@ for j = 1:Size
     
     %Coordinate Set
     %Arm 1
-    x2_begin_1 = 0;
-    y2_begin_1 = 0;
-    z2_begin_1 = 0;
+    xyz_begin_1 = [0 0 0];
     
-    x2_1 = x_1(j);
-    y2_1 = y_1(j);
-    z2_1 = z_1(j);
+    xyz_end_1 = [x_1(j) y_1(j) z_1(j)] + xyz_begin_1;
     
     %Arm_2
-    x2_begin_2 = x2_1;
-    y2_begin_2 = y2_1;
-    z2_begin_2 = z2_1;
+    xyz_begin_2 = xyz_end_1;
     
-    x2_2 = x_2(j) + x2_begin_2;
-    y2_2 = y_2(j) + y2_begin_2;
-    z2_2 = z_2(j) + z2_begin_2;
+    xyz_end_2 = [x_2(j) y_2(j) z_2(j)] + xyz_begin_2;
     
     %Arm_3
-    x2_begin_3 = x2_2;
-    y2_begin_3 = y2_2;
-    z2_begin_3 = z2_2;
+    xyz_begin_3 = xyz_end_2;
     
-    x2_3 = x_3(j) + x2_begin_3;
-    y2_3 = y_3(j) + y2_begin_3;
-    z2_3 = z_3(j) + z2_begin_3;
+    xyz_end_3 = [x_3(j) y_3(j) z_3(j)] + xyz_begin_3;
     
     %Arm_1
-    q_1 = quiver3([x2_begin_1],[y2_begin_1],[z2_begin_1],[x2_1],[y2_1],[z2_1]);
-    q_1.Color = 'black';
-    q_1.LineWidth = 10;
-    q_1.Marker = 'h';
-    q_1.MarkerSize = 20;
-    q_1.MarkerFaceColor = 'blue';
-    q_1.MarkerEdgeColor = 'blue';
-    q_1.ShowArrowHead = 'off';
-    q_1.AlignVertexCenters = 'on';
+    Cylinder(xyz_begin_1,xyz_end_1,r_1,n,cyl_color_1,closed,lines)
     hold on
     
     %Arm_2
-    q_2 = quiver3([x2_begin_2],[y2_begin_2],[z2_begin_2],[x2_2],[y2_2],[z2_2]);
-    q_2.Color = 'black';
-    q_2.LineWidth = 10;
-    q_2.Marker = 'h';
-    q_2.MarkerSize = 20;
-    q_2.MarkerFaceColor = 'blue';
-    q_2.MarkerEdgeColor = 'blue';
-    q_2.ShowArrowHead = 'off';
-    q_2.AlignVertexCenters = 'on';
+    Cylinder(xyz_begin_2,xyz_end_2,r_2,n,cyl_color_2,closed,lines)
     hold on
     
     %Arm_3
-    q_3 = quiver3([x2_begin_3],[y2_begin_3],[z2_begin_3],[x2_3],[y2_3],[z2_3]);
-    q_3.Color = 'black';
-    q_3.LineWidth = 10;
-    q_3.Marker = 'h';
-    q_3.MarkerSize = 20;
-    q_3.MarkerFaceColor = 'blue';
-    q_3.MarkerEdgeColor = 'blue';
-    q_3.ShowArrowHead = 'on';
-    q_3.AlignVertexCenters = 'on';
+    Cylinder(xyz_begin_3,xyz_end_3,r_3,n,cyl_color_3,closed,lines)
     hold on
     
     axis([-5 5 -5 5 -5 5])
     drawnow
     pause(.03)
-    hold off
+    hold on
 end
-clearvars -except m

@@ -267,6 +267,13 @@ function ArmTypeMenu_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from ArmTypeMenu
 contents = cellstr(get(hObject,'String'));
 handles.ArmOption = contents{get(hObject,'Value')};
+if strcmp(handles.ArmOption, 'Left Arm')
+    handles.ArmOption = 1;
+elseif strcmp(handles.ArmOption, 'Right Arm')
+    handles.ArmOption = 2;
+elseif strcmp(handles.ArmOption, 'Superimposed Both')
+    handles.ArmOption = 3;
+end
 guidata(hObject, handles);
 
 
@@ -297,6 +304,11 @@ function GraphMenu_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from GraphMenu
 contents = cellstr(get(hObject,'String'));
 handles.GraphOption = contents{get(hObject,'Value')};
+if strcmp(handles.GraphOption, 'Regular Motion')
+    handles.GraphOption = 1;
+elseif strcmp(handles.GraphOption, 'Min and Max Motion')
+    handles.GraphOption = 2;
+end
 guidata(hObject, handles);
 
 
@@ -323,6 +335,15 @@ function TableMenu_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from TableMenu
 contents = cellstr(get(hObject,'String'));
 handles.TableOption = contents{get(hObject,'Value')};
+if strcmp(handles.TableOption,'Left Arm Data')
+    handles.TableOption = 1;
+elseif strcmp(handles.TableOption,'Left Arm Min and Max')
+    handles.TableOption = 2;
+elseif strcmp(handles.TablesOption,'Right Arm Data')
+    handles.TableOption = 3;
+elseif strcmp(handles.TableOption,'Right Arm Min and Max')
+    handles.TableOption = 4;
+end
 guidata(hObject, handles);
 
 % --- Executes during object creation, after setting all properties.
@@ -348,6 +369,13 @@ function PlotMenu_Callback(hObject, eventdata, handles)
 %        contents{get(hObject,'Value')} returns selected item from PlotMenu
 contents = cellstr(get(hObject, 'String'));
 handles.PlotOption = contents{get(hObject,'Value')};
+if strcmp(handles.PlotOption,'Phi Angle Plot')
+    handles.PlotOption = 1;
+elseif strcmp(handles.PlotOption,'Theta Angle Plot')
+    handles.PlotOption = 2;
+elseif strcmp(handles.PlotOption,'Both Phi and Theta Angle Plot')
+    handles.PlotOption = 3;
+end
 guidata(hObject, handles);
 
 
