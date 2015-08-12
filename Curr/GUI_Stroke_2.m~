@@ -247,19 +247,20 @@ function TableDataButton_Callback(hObject, eventdata, handles)
 % Create the column and row names in cell arrays 
 cnames_min_max = {'Upper Arm Phi','Upper Arm Theta','Forearm Phi', 'Forearm Theta', 'Hand Phi', 'Hand Theta'};
 rnames_min_max = {'Max Angle (degrees)','Time Indent of Max','Min Angle (degrees)', 'Time Indent of Min'};
-cnames = {'Time (s)', 'Upper Arm Length', 'Upper Arm Phi', 'Upper Arm Theta', 'Forearm Length', 'Forearm Phi', 'Forearm Theta', 'Hand Length', 'Hand Phi', 'Hand Theta', 'Time Indent'};
-
+cnames = {'Time (s)', 'Upper Arm Length', 'Upper Arm Phi', 'Upper Arm Theta', 'Forearm L
 
 % Create the uitable
-
+t = uitable(f,'Data',d,...
+            'ColumnName',cnames,... 
+            'RowName',rnames);
 if handles.TableOption == 1
-    set(handles.CSVDisplay, 'Data', csvread('LeftArmMotionData.csv', 1, 0), 'ColumnName', cnames);
+    set(handles.CSVDisplay, 'Data', csvread('LeftArmMotionData.csv'));
 elseif handles.TableOption == 2
-    set(handles.CSVDisplay, 'Data', csvread('LeftArmMotion_Min_Max_Data.csv', 1, 1), 'ColumnName', cnames_min_max, 'RowName', rnames_min_max);
+    set(handles.CSVDisplay, 'Data', csvread('LeftArmMotion_Min_Max_Data.csv'));
 elseif handles.TableOption == 3
-    set(handles.CSVDisplay, 'Data', csvread('RightArmMotionData.csv', 1, 0), 'ColumnName', cnames);
+    set(handles.CSVDisplay, 'Data', csvread('RightArmMotionData.csv'));
 elseif handles.TableOption == 4
-    set(handles.CSVDisplay, 'Data', csvread('RightArmMotion_Min_Max_Data.csv', 1, 1), 'ColumnName', cnames_min_max, 'RowName', rnames_min_max);
+    set(handles.CSVDisplay, 'Data', csvread('RightArmMotion_Min_Max_Data.csv'));
 end
 guidata(hObject, handles);
 
@@ -358,7 +359,7 @@ if strcmp(handles.TableOption,'Left Arm Data')
     handles.TableOption = 1;
 elseif strcmp(handles.TableOption,'Left Arm Min and Max')
     handles.TableOption = 2;
-elseif strcmp(handles.TableOption,'Right Arm Data')
+elseif strcmp(handles.TablesOption,'Right Arm Data')
     handles.TableOption = 3;
 elseif strcmp(handles.TableOption,'Right Arm Min and Max')
     handles.TableOption = 4;
