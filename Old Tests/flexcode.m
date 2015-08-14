@@ -24,15 +24,12 @@ while i < (n + 1)
     i = i + 1; 
 end 
 
-axis([0 90 0 50])
-plot(red, 'r');
-hold on;
-plot(green, 'g');
-hold on;
-plot(blue, 'b');
-hold on;
-plot(white, 'k');
-hold off;
+%Red Green are middle fingers
+%Blue White are thumbs
+
+
+
+
 
 
 

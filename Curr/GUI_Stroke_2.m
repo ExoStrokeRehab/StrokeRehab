@@ -160,6 +160,7 @@ elseif handles.GraphOption == 2 && handles.ArmOption == 2 && handles.InstanceSta
 elseif handles.GraphOption == 2 && handles.ArmOption == 3 && handles.InstanceState == 1
     Min_Max_Both_Instance_CSVRead()
 end
+guidata(hObject, handles);
 
 
 
@@ -175,16 +176,29 @@ function TimeIndexButton_Callback(hObject, eventdata, handles)
 % hObject    handle to TimeIndexButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+Temp = handles.TimeIndex;
 if isempty(handles.TimeIndex)
     warndlg('Please enter a time index');
-elseif isempty(str2double(handles.LoggingTimeIndex))
+elseif isempty(str2double(handles.TimeIndex))
     warndlg('Please enter an integer')
-elseif round(str2double(handles.LoggingTimeIndex)) <= 0
+elseif round(str2double(handles.TimeIndex)) <= 0
     warndlg('Please enter an appropriate integer time index greater than 0');
 else
-    handles.LoggingTimeIndex = round(str2double(handles.LoggingTimeIndex));
+    handles.TimeIndex = round(str2double(handles.TimeIndex));
+    try
+        if handles.ArmOption == 1
+            TimeIndent_Left_CSVRead(handles.TimeIndex);
+        elseif handles.ArmOption == 2
+            TimeIndent_Right_CSVRead(handles.TimeIndex);
+        elseif handles.ArmOption == 3
+            TimeIndent_Both_CSVRead(handles.TimeIndex);
+        end
+    catch
+        warndlg('Please enter an integer in the appropriate time index range. Use the table below to find that range.');
+    end
 end
-    
+
+handles.TimeIndex = Temp;
 guidata(hObject, handles);
 
 

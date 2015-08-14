@@ -11,7 +11,7 @@ SoftwareSerial Serial(RX, TX);
 const int flexSensorPin = A0; //analog pin 0
 const int fsp2 = A1;
 const int fsp3 = A2;
-const int fsp4 = A3;
+const int fsp4 = A4;
 
 void setup(){
   Serial.begin(115200);
@@ -34,7 +34,7 @@ void loop(){
 
     int constrained[3];
     for(int ii = 0; ii < 4; ii++){
-      constrained[ii] = constrain(mapped[ii], 0, 90);
+      constrained[ii] = mapped[ii];
       }
     
 
@@ -44,7 +44,18 @@ void loop(){
       }
       
       Serial.println(" ");
+
+    
       
+      for(int i = 0; i < 4; i++){
+        Serial.print(fsr[i]);
+        Serial.print(" ");
+        }
+    
+        Serial.println(" ");
+    
+       
+       
 
      
   //In my tests I was getting a reading on the arduino between 512, and 614. 
