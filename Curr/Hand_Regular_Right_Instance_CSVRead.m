@@ -1,5 +1,5 @@
-function Hand_Regular_Left_NoInstance_CSVRead()
-Data = csvread('LeftHandMotionData.csv', 1, 0);
+function Hand_Regular_Right_Instance_CSVRead()
+Data = csvread('RightHandMotionData.csv', 1, 0);
 Time = Data(1:end, 1);
 Size = length(Time);
 red = Data(1:end, 2);
@@ -43,10 +43,9 @@ blue3 = blue3 + Helper3;
 white3 = white3 + Helper3;
 
 scale = 2;
-
 %------------------Spherical Coordinate Conversion-------------------------
 Theta = pi/2*ones(Size, 1);
-Theta_Thumb = pi*3/4*ones(Size,1); %Posotive for the left hand
+Theta_Thumb = -pi/4*ones(Size,1);
 %Finger Length Matrix for lower half of finger
 Finger_Lower_1 = scale*2*ones(Size,1);%Pinky
 Finger_Lower_2 = scale*2.4*ones(Size,1);
@@ -62,7 +61,6 @@ Finger_Upper_1 = scale*2*ones(Size,1);
 Finger_Upper_2 = scale*2.5*ones(Size,1);
 Finger_Upper_3 = scale*2.5*ones(Size,1);
 Finger_Upper_4 = scale*2.3*ones(Size,1);
-
 
 %Conversion from Spherical to Rectangular Coordinates 
 %Pinky 1
@@ -142,6 +140,8 @@ z_2_5 = Thumb_Upper.*cos(white2);
 
 
 
+
+
 %--------------------------------------------------------------------------
 %Line/Axis Plots 
 t1a = -30:.01:30;
@@ -176,7 +176,7 @@ for j = 1:Size
     
     %Coordinate Set
     %Pinky 1
-    xyz_begin_1_1 = [13 0 0];
+    xyz_begin_1_1 = [1.5 0 0];
     
     xyz_end_1_1 = [x_1_1(j) y_1_1(j) z_1_1(j)] + xyz_begin_1_1;
     
@@ -191,7 +191,7 @@ for j = 1:Size
     xyz_end_3_1 = [x_3_1(j) y_3_1(j) z_3_1(j)] + xyz_begin_3_1;
     
     %Ring 1
-    xyz_begin_1_2 = [8.5 0 0];
+    xyz_begin_1_2 = [5 0 0];
     
     xyz_end_1_2 = [x_1_2(j) y_1_2(j) z_1_2(j)] + xyz_begin_1_2;
     
@@ -206,7 +206,7 @@ for j = 1:Size
     xyz_end_3_2 = [x_3_2(j) y_3_2(j) z_3_2(j)] + xyz_begin_3_2;
     
     %Middle 1
-    xyz_begin_1_3 = [5 0 0];
+    xyz_begin_1_3 = [8.5 0 0];
     
     xyz_end_1_3 = [x_1_3(j) y_1_3(j) z_1_3(j)] + xyz_begin_1_3;
     
@@ -221,7 +221,7 @@ for j = 1:Size
     xyz_end_3_3 = [x_3_3(j) y_3_3(j) z_3_3(j)] + xyz_begin_3_3;
     
     %Index 1
-    xyz_begin_1_4 = [1.5 0 0];
+    xyz_begin_1_4 = [13 0 0];
     
     xyz_end_1_4 = [x_1_4(j) y_1_4(j) z_1_4(j)] + xyz_begin_1_4;
     
@@ -236,7 +236,7 @@ for j = 1:Size
     xyz_end_3_4 = [x_3_4(j) y_3_4(j) z_3_4(j)] + xyz_begin_3_4;
     
     %Thumb 1
-    xyz_begin_1_5 = [0 -10 0];
+    xyz_begin_1_5 = [15 -10 0];
     
     xyz_end_1_5 = [x_1_5(j) y_1_5(j) z_1_5(j)] + xyz_begin_1_5;
     
@@ -295,9 +295,8 @@ for j = 1:Size
     
     axis([-10 20 -20 20 -20 20])
     drawnow
-    hold off
+    hold on
 end
 
 
 clear;
-end

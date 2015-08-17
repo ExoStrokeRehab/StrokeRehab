@@ -22,7 +22,7 @@ function varargout = GUI_Stroke_2(varargin)
 
 % Edit the above text to modify the response to help GUI_Stroke_2
 
-% Last Modified by GUIDE v2.5 17-Aug-2015 16:15:23
+% Last Modified by GUIDE v2.5 16-Aug-2015 23:57:37
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -68,7 +68,6 @@ handles.InstanceState = 0;
 handles.TimeIndex = 1;
 handles.LoggingSize = 0;
 handles.LoggingInit = 1;
-handles.EnterData = 0;
 guidata(hObject, handles);
 
 
@@ -94,21 +93,17 @@ function LeftArmPushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-if handles.EnterData == 1
-    if isempty(handles.LoggingTimeAns)
-        warndlg('Time Duration Input must be enterd');
-    else
-        if isempty(str2double(handles.LoggingTimeAns)) || str2double(handles.LoggingTimeAns) <= 0
-            set(src,'string','0');
-            warndlg('Time Duration Input must numerical and greater than 0');
-        else
-            [handles.LoggingSize, handles.LoggingInit] = FullMotionCapture_v3_left(handles.m, str2double(handles.LoggingTimeAns), handles.LoggingSize, handles.LoggingInit);
-        end
-    end
-else
-    warndlg('Please check the "Enter Data Mode" checkbox if you wish to enter data!');
-end
 
+if isempty(handles.LoggingTimeAns)
+    warndlg('Time Duration Input must be enterd');
+else
+    if isempty(str2double(handles.LoggingTimeAns)) || str2double(handles.LoggingTimeAns) <= 0
+        set(src,'string','0');
+        warndlg('Time Duration Input must numerical and greater than 0');
+    else
+        [handles.LoggingSize, handles.LoggingInit] = FullMotionCapture_v3_left(handles.m, str2double(handles.LoggingTimeAns), handles.LoggingSize, handles.LoggingInit);
+    end
+end
 guidata(hObject, handles);
 
 
@@ -118,19 +113,15 @@ function RightArmPushbutton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-if handles.EnterData == 1
-    if isempty(handles.LoggingTimeAns)
-        warndlg('Time Duration Input must be enterd');
-    else
-        if isempty(str2double(handles.LoggingTimeAns)) || str2double(handles.LoggingTimeAns) <= 0
-            set(src,'string','0');
-            warndlg('Time Duration Input must numerical and greater than 0');
-        else
-            [handles.LoggingSize, handles.LoggingInit] = FullMotionCapture_v3_right(handles.m, str2double(handles.LoggingTimeAns), handles.LoggingSize, handles.LoggingInit);
-        end
-    end
+if isempty(handles.LoggingTimeAns)
+    warndlg('Time Duration Input must be enterd');
 else
-    warndlg('Please check the "Enter Data Mode" checkbox if you wish to enter data!');
+    if isempty(str2double(handles.LoggingTimeAns)) || str2double(handles.LoggingTimeAns) <= 0
+        set(src,'string','0');
+        warndlg('Time Duration Input must numerical and greater than 0');
+    else
+        [handles.LoggingSize, handles.LoggingInit] = FullMotionCapture_v3_right(handles.m, str2double(handles.LoggingTimeAns), handles.LoggingSize, handles.LoggingInit);
+    end
 end
 guidata(hObject, handles);
 
@@ -150,40 +141,26 @@ elseif handles.GraphOption == 1 && handles.ArmOption == 2 && handles.InstanceSta
     Regular_Right_NoInstance_CSVRead()
 elseif handles.GraphOption == 1 && handles.ArmOption == 3 && handles.InstanceState == 0
     Regular_Both_NoInstance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 4 && handles.InstanceState == 0
-    Hand_Regular_Left_NoInstance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 5 && handles.InstanceState == 0
-    Hand_Regular_Right_NoInstance_CSVRead()
+elseif handles.GraphOption == 1 && handles.ArmOption == 3 && handles.InstanceState == 0
+    Regular_Both_NoInstance_CSVRead()
 elseif handles.GraphOption == 1 && handles.ArmOption == 1 && handles.InstanceState == 1
     Regular_Left_Instance_CSVRead()
 elseif handles.GraphOption == 1 && handles.ArmOption == 2 && handles.InstanceState == 1
     Regular_Right_Instance_CSVRead()
 elseif handles.GraphOption == 1 && handles.ArmOption == 3 && handles.InstanceState == 1
     Regular_Both_Instance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 4 && handles.InstanceState == 1
-    Hand_Regular_Left_Instance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 5 && handles.InstanceState == 1
-    Hand_Regular_Right_Instance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 1 && handles.InstanceState == 0
     Min_Max_Left_NoInstance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 2 && handles.InstanceState == 0
     Min_Max_Right_NoInstance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 3 && handles.InstanceState == 0
     Min_Max_Both_NoInstance_CSVRead()
-elseif handles.GraphOption == 2 && handles.ArmOption == 4 && handles.InstanceState == 0
-    Hand_Min_Max_Left_NoInstance_CSVRead()
-elseif handles.GraphOption == 2 && handles.ArmOption == 5 && handles.InstanceState == 0
-    Hand_Min_Max_Right_NoInstance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 1 && handles.InstanceState == 1
     Min_Max_Left_Instance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 2 && handles.InstanceState == 1
     Min_Max_Right_Instance_CSVRead()
 elseif handles.GraphOption == 2 && handles.ArmOption == 3 && handles.InstanceState == 1
     Min_Max_Both_Instance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 4 && handles.InstanceState == 1
-    Hand_Min_Max_Left_Instance_CSVRead()
-elseif handles.GraphOption == 1 && handles.ArmOption == 5 && handles.InstanceState == 1
-    Hand_Min_Max_Right_Instance_CSVRead()
 end
 guidata(hObject, handles);
 
@@ -217,10 +194,6 @@ else
             TimeIndent_Right_CSVRead(handles.TimeIndex);
         elseif handles.ArmOption == 3
             TimeIndent_Both_CSVRead(handles.TimeIndex);
-        elseif handles.ArmOption == 4
-            TimeIndent_Hand_Left_CSVRead(handles.TimeIndex);
-        elseif handles.ArmOption == 5
-            TimeIndent_Hand_Right_CSVRead(handles.TimeIndex);
         end
     catch
         warndlg('Please enter an integer in the appropriate time index range. Use the table below to find that range.');
@@ -292,9 +265,6 @@ cnames_min_max = {'Upper Arm Phi','Upper Arm Theta','Forearm Phi', 'Forearm Thet
 rnames_min_max = {'Max Angle (degrees)','Time Indent of Max','Min Angle (degrees)', 'Time Indent of Min'};
 cnames = {'Time (s)', 'Upper Arm Length', 'Upper Arm Phi', 'Upper Arm Theta', 'Forearm Length', 'Forearm Phi', 'Forearm Theta', 'Hand Length', 'Hand Phi', 'Hand Theta', 'Time Indent'};
 
-cnames_min_max_2 = {'Ring Finger', 'Index Finger', 'Thumb', 'Pinky'};
-rnames_min_max_2 = {'Max Angle (degrees)','Time Indent of Max','Min Angle (degrees)', 'Time Indent of Min'};
-cnames_2 = {'Time Indices', 'Ring Finger', 'Index Finger', 'Thumb', 'Pinky'};
 
 % Create the uitable
 
@@ -306,14 +276,6 @@ elseif handles.TableOption == 3
     set(handles.CSVDisplay, 'Data', csvread('RightArmMotionData.csv', 1, 0), 'ColumnName', cnames);
 elseif handles.TableOption == 4
     set(handles.CSVDisplay, 'Data', csvread('RightArmMotion_Min_Max_Data.csv', 1, 1), 'ColumnName', cnames_min_max, 'RowName', rnames_min_max);
-elseif handles.TableOption == 5
-    set(handles.CSVDisplay, 'Data', csvread('LeftHandMotionData.csv', 1, 0), 'ColumnName', cnames_2);
-elseif handles.TableOption == 6
-    set(handles.CSVDisplay, 'Data', csvread('LeftHandMotion_Min_Max_Data.csv', 1, 1), 'ColumnName', cnames_min_max_2, 'RowName', rnames_min_max_2);
-elseif handles.TableOption == 7
-    set(handles.CSVDisplay, 'Data', csvread('RightHandMotionData.csv', 1, 0), 'ColumnName', cnames_2);
-elseif handles.TableOption == 8
-    set(handles.CSVDisplay, 'Data', csvread('RightHandMotion_Min_Max_Data.csv', 1, 1), 'ColumnName', cnames_min_max_2, 'RowName', rnames_min_max_2);
 end
 guidata(hObject, handles);
 
@@ -421,14 +383,6 @@ elseif strcmp(handles.TableOption,'Right Arm Data')
     handles.TableOption = 3;
 elseif strcmp(handles.TableOption,'Right Arm Min and Max')
     handles.TableOption = 4;
-elseif strcmp(handles.TableOption,'Left Hand Data')
-    handles.TableOption = 5;
-elseif strcmp(handles.TableOption,'Left Hand Min and Max')
-    handles.TableOption = 6;
-elseif strcmp(handles.TableOption,'Right Hand Data')
-    handles.TableOption = 7;
-elseif strcmp(handles.TableOption,'Right Hand Min and Max')
-    handles.TableOption = 8;
 end
 guidata(hObject, handles);
 
@@ -504,24 +458,10 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in EnterDataState.
-function EnterDataState_Callback(hObject, eventdata, handles)
-% hObject    handle to EnterDataState (see GCBO)
+% --- Executes on button press in checkbox1.
+function checkbox1_Callback(hObject, eventdata, handles)
+% hObject    handle to checkbox1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-handles.EnterData = get(hObject, 'Value');
-guidata(hObject, handles);
-% Hint: get(hObject,'Value') returns toggle state of EnterDataState
 
-
-% --- Executes on button press in StopButton.
-function StopButton_Callback(hObject, eventdata, handles)
-% hObject    handle to StopButton (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-cla
-warndlg('You have force stopped the graph!');
-error('You have force stopped the graph!');
-
-
-
+% Hint: get(hObject,'Value') returns toggle state of checkbox1

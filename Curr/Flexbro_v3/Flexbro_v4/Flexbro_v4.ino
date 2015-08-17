@@ -28,7 +28,7 @@ void loop() {
    int mapped[3];                         //mapped values (0-90) for each
 
    mapped[0] = map(fsr[0], 480, 380, 0, 90);
-   ma pped[1] = map(fsr[1], 664, 590, 0, 90);
+   mapped[1] = map(fsr[1], 664, 590, 0, 90);
    mapped[2] = map(fsr[2], 655, 520, 0, 90);
    mapped[3] = map(fsr[3], 480, 380, 0, 90);
 

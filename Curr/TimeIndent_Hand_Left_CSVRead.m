@@ -1,5 +1,17 @@
-function Hand_Regular_Left_NoInstance_CSVRead()
+function TimeIndent_Hand_Left_CSVRead(j)
 Data = csvread('LeftHandMotionData.csv', 1, 0);
+Data2 = csvread('LeftHandMotion_Min_Max_Data.csv', 1, 1);
+
+%Getting Min and Max Data
+RMax = Data2(2,1);
+RMin = Data2(4,1);
+IMax = Data2(2,2);
+IMin = Data2(4,2);
+TMax = Data2(2,3);
+TMin = Data2(4,3);
+PMax = Data2(2,4);
+PMin = Data2(4,4);
+
 Time = Data(1:end, 1);
 Size = length(Time);
 red = Data(1:end, 2);
@@ -160,143 +172,193 @@ t3b = 0*t3c;
 finger_r = 1.5;
 thumb_r = 1.6;
 n = 20;
-cyl_color = 'yellow';
+cyl_color_1 = 'yellow';
+cyl_color_2 = 'yellow';
+cyl_color_3 = 'yellow';
+cyl_color_4 = 'yellow';
+cyl_color_5 = 'yellow';
+
 closed = 1;
 lines = 0;
 
-for j = 1:Size
-    %Axis Plots are necessary for instances not to show
-    %Plot Axes
-    plot3(t1a, t1b, t1c);
-    hold on
-    plot3(t2a, t2b, t2c);
-    hold on
-    plot3(t3a, t3b, t3c);
-    hold on
-    
-    %Coordinate Set
-    %Pinky 1
-    xyz_begin_1_1 = [13 0 0];
-    
-    xyz_end_1_1 = [x_1_1(j) y_1_1(j) z_1_1(j)] + xyz_begin_1_1;
-    
-    %Pinky 2
-    xyz_begin_2_1 = xyz_end_1_1;
-    
-    xyz_end_2_1 = [x_2_1(j) y_2_1(j) z_2_1(j)] + xyz_begin_2_1;
-    
-    %Pinky 3
-    xyz_begin_3_1 = xyz_end_2_1;
-    
-    xyz_end_3_1 = [x_3_1(j) y_3_1(j) z_3_1(j)] + xyz_begin_3_1;
-    
-    %Ring 1
-    xyz_begin_1_2 = [8.5 0 0];
-    
-    xyz_end_1_2 = [x_1_2(j) y_1_2(j) z_1_2(j)] + xyz_begin_1_2;
-    
-    %Ring 2
-    xyz_begin_2_2 = xyz_end_1_2;
-    
-    xyz_end_2_2 = [x_2_2(j) y_2_2(j) z_2_2(j)] + xyz_begin_2_2;
-    
-    %Ring 3
-    xyz_begin_3_2 = xyz_end_2_2;
-    
-    xyz_end_3_2 = [x_3_2(j) y_3_2(j) z_3_2(j)] + xyz_begin_3_2;
-    
-    %Middle 1
-    xyz_begin_1_3 = [5 0 0];
-    
-    xyz_end_1_3 = [x_1_3(j) y_1_3(j) z_1_3(j)] + xyz_begin_1_3;
-    
-    %Middle 2
-    xyz_begin_2_3 = xyz_end_1_3;
-    
-    xyz_end_2_3 = [x_2_3(j) y_2_3(j) z_2_3(j)] + xyz_begin_2_3;
-    
-    %Middle 3
-    xyz_begin_3_3 = xyz_end_2_3;
-    
-    xyz_end_3_3 = [x_3_3(j) y_3_3(j) z_3_3(j)] + xyz_begin_3_3;
-    
-    %Index 1
-    xyz_begin_1_4 = [1.5 0 0];
-    
-    xyz_end_1_4 = [x_1_4(j) y_1_4(j) z_1_4(j)] + xyz_begin_1_4;
-    
-    %Index 2
-    xyz_begin_2_4 = xyz_end_1_4;
-    
-    xyz_end_2_4 = [x_2_4(j) y_2_4(j) z_2_4(j)] + xyz_begin_2_4;
-    
-    %Index 3
-    xyz_begin_3_4 = xyz_end_2_4;
-    
-    xyz_end_3_4 = [x_3_4(j) y_3_4(j) z_3_4(j)] + xyz_begin_3_4;
-    
-    %Thumb 1
-    xyz_begin_1_5 = [0 -10 0];
-    
-    xyz_end_1_5 = [x_1_5(j) y_1_5(j) z_1_5(j)] + xyz_begin_1_5;
-    
-    %Thumb 2
-    xyz_begin_2_5 = xyz_end_1_5;
-    
-    xyz_end_2_5 = [x_2_5(j) y_2_5(j) z_2_5(j)] + xyz_begin_2_5;
 
-    %Plot Rectangle Hand
-    Cylinder([7.5 0 -7.5],[7.5 -10 -7.5],7.5,n,cyl_color,closed,lines)
-    
-    %Plotting Fingers -----------------------------------------------------
-    %Pinky
-    Cylinder(xyz_begin_1_1,xyz_end_1_1,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_2_1,xyz_end_2_1,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_3_1,xyz_end_3_1,finger_r,n,cyl_color,closed,lines)
-    hold on
-    
-    %Ring
-    Cylinder(xyz_begin_1_2,xyz_end_1_2,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_2_2,xyz_end_2_2,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_3_2,xyz_end_3_2,finger_r,n,cyl_color,closed,lines)
-    hold on
-    
-    
-    %Middle
-    Cylinder(xyz_begin_1_3,xyz_end_1_3,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_2_3,xyz_end_2_3,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_3_3,xyz_end_3_3,finger_r,n,cyl_color,closed,lines)
-    hold on
-    
-    
-    %Index
-    Cylinder(xyz_begin_1_4,xyz_end_1_4,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_2_4,xyz_end_2_4,finger_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_3_4,xyz_end_3_4,finger_r,n,cyl_color,closed,lines)
-    hold on
-    
-    
-    %Thumb
-    Cylinder(xyz_begin_1_5,xyz_end_1_5,thumb_r,n,cyl_color,closed,lines)
-    hold on
-    Cylinder(xyz_begin_2_5,xyz_end_2_5,thumb_r,n,cyl_color,closed,lines)
-    hold on
-   
-    
-    
-    
-    axis([-10 20 -20 20 -20 20])
-    drawnow
-    hold off
+%Axis Plots are necessary for instances not to show
+%Plot Axes
+plot3(t1a, t1b, t1c);
+hold on
+plot3(t2a, t2b, t2c);
+hold on
+plot3(t3a, t3b, t3c);
+hold on
+
+%Coordinate Set
+%Pinky 1
+xyz_begin_1_1 = [13 0 0];
+
+xyz_end_1_1 = [x_1_1(j) y_1_1(j) z_1_1(j)] + xyz_begin_1_1;
+
+%Pinky 2
+xyz_begin_2_1 = xyz_end_1_1;
+
+xyz_end_2_1 = [x_2_1(j) y_2_1(j) z_2_1(j)] + xyz_begin_2_1;
+
+%Pinky 3
+xyz_begin_3_1 = xyz_end_2_1;
+
+xyz_end_3_1 = [x_3_1(j) y_3_1(j) z_3_1(j)] + xyz_begin_3_1;
+
+%Ring 1
+xyz_begin_1_2 = [8.5 0 0];
+
+xyz_end_1_2 = [x_1_2(j) y_1_2(j) z_1_2(j)] + xyz_begin_1_2;
+
+%Ring 2
+xyz_begin_2_2 = xyz_end_1_2;
+
+xyz_end_2_2 = [x_2_2(j) y_2_2(j) z_2_2(j)] + xyz_begin_2_2;
+
+%Ring 3
+xyz_begin_3_2 = xyz_end_2_2;
+
+xyz_end_3_2 = [x_3_2(j) y_3_2(j) z_3_2(j)] + xyz_begin_3_2;
+
+%Middle 1
+xyz_begin_1_3 = [5 0 0];
+
+xyz_end_1_3 = [x_1_3(j) y_1_3(j) z_1_3(j)] + xyz_begin_1_3;
+
+%Middle 2
+xyz_begin_2_3 = xyz_end_1_3;
+
+xyz_end_2_3 = [x_2_3(j) y_2_3(j) z_2_3(j)] + xyz_begin_2_3;
+
+%Middle 3
+xyz_begin_3_3 = xyz_end_2_3;
+
+xyz_end_3_3 = [x_3_3(j) y_3_3(j) z_3_3(j)] + xyz_begin_3_3;
+
+%Index 1
+xyz_begin_1_4 = [1.5 0 0];
+
+xyz_end_1_4 = [x_1_4(j) y_1_4(j) z_1_4(j)] + xyz_begin_1_4;
+
+%Index 2
+xyz_begin_2_4 = xyz_end_1_4;
+
+xyz_end_2_4 = [x_2_4(j) y_2_4(j) z_2_4(j)] + xyz_begin_2_4;
+
+%Index 3
+xyz_begin_3_4 = xyz_end_2_4;
+
+xyz_end_3_4 = [x_3_4(j) y_3_4(j) z_3_4(j)] + xyz_begin_3_4;
+
+%Thumb 1
+xyz_begin_1_5 = [0 -10 0];
+
+xyz_end_1_5 = [x_1_5(j) y_1_5(j) z_1_5(j)] + xyz_begin_1_5;
+
+%Thumb 2
+xyz_begin_2_5 = xyz_end_1_5;
+
+xyz_end_2_5 = [x_2_5(j) y_2_5(j) z_2_5(j)] + xyz_begin_2_5;
+
+%Plot Rectangle Hand
+Cylinder([7.5 0 -7.5],[7.5 -10 -7.5],7.5,n,cyl_color,closed,lines)
+
+%Plotting Fingers -----------------------------------------------------
+%Pinky
+switch(j)
+    case PMax
+        cyl_color_1 = 'blue';
+    case PMin
+        cyl_color_1 = 'red';
+    otherwise
+        cyl_color_1 = 'yellow';
 end
+
+Cylinder(xyz_begin_1_1,xyz_end_1_1,finger_r,n,cyl_color_1,closed,lines)
+hold on
+Cylinder(xyz_begin_2_1,xyz_end_2_1,finger_r,n,cyl_color_1,closed,lines)
+hold on
+Cylinder(xyz_begin_3_1,xyz_end_3_1,finger_r,n,cyl_color_1,closed,lines)
+hold on
+
+%Ring
+switch(j)
+    case RMax
+        cyl_color_2 = 'blue';
+    case RMin
+        cyl_color_2 = 'red';
+    otherwise
+        cyl_color_2 = 'yellow';
+end
+
+Cylinder(xyz_begin_1_2,xyz_end_1_2,finger_r,n,cyl_color_2,closed,lines)
+hold on
+Cylinder(xyz_begin_2_2,xyz_end_2_2,finger_r,n,cyl_color_2,closed,lines)
+hold on
+Cylinder(xyz_begin_3_2,xyz_end_3_2,finger_r,n,cyl_color_2,closed,lines)
+hold on
+
+
+%Middle
+switch(j)
+    case RMax
+        cyl_color_3 = 'blue';
+    case RMin
+        cyl_color_3 = 'red';
+    otherwise
+        cyl_color_3 = 'yellow';
+end
+
+Cylinder(xyz_begin_1_3,xyz_end_1_3,finger_r,n,cyl_color_3,closed,lines)
+hold on
+Cylinder(xyz_begin_2_3,xyz_end_2_3,finger_r,n,cyl_color_3,closed,lines)
+hold on
+Cylinder(xyz_begin_3_3,xyz_end_3_3,finger_r,n,cyl_color_3,closed,lines)
+hold on
+
+
+%Index
+switch(j)
+    case IMax
+        cyl_color_4 = 'blue';
+    case IMin
+        cyl_color_4 = 'red';
+    otherwise
+        cyl_color_4 = 'yellow';
+end
+
+Cylinder(xyz_begin_1_4,xyz_end_1_4,finger_r,n,cyl_color_4,closed,lines)
+hold on
+Cylinder(xyz_begin_2_4,xyz_end_2_4,finger_r,n,cyl_color_4,closed,lines)
+hold on
+Cylinder(xyz_begin_3_4,xyz_end_3_4,finger_r,n,cyl_color_4,closed,lines)
+hold on
+
+
+%Thumb
+switch(j)
+    case TMax
+        cyl_color_5 = 'blue';
+    case TMin
+        cyl_color_5 = 'red';
+    otherwise
+        cyl_color_5 = 'yellow';
+end
+
+Cylinder(xyz_begin_1_5,xyz_end_1_5,thumb_r,n,cyl_color_5,closed,lines)
+hold on
+Cylinder(xyz_begin_2_5,xyz_end_2_5,thumb_r,n,cyl_color_5,closed,lines)
+hold on
+
+
+
+
+axis([-10 20 -20 20 -20 20])
+drawnow
+hold off
+
 
 
 clear;

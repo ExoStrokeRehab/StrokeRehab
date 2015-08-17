@@ -1,5 +1,17 @@
-function Hand_Regular_Left_NoInstance_CSVRead()
+function Hand_Min_Max_Left_NoInstance_CSVRead()
 Data = csvread('LeftHandMotionData.csv', 1, 0);
+Data2 = csvread('LeftHandMotion_Min_Max_Data.csv', 1, 1);
+
+%Getting Min and Max Data
+RMax = Data2(2,1);
+RMin = Data2(4,1);
+IMax = Data2(2,2);
+IMin = Data2(4,2);
+TMax = Data2(2,3);
+TMin = Data2(4,3);
+PMax = Data2(2,4);
+PMin = Data2(4,4);
+
 Time = Data(1:end, 1);
 Size = length(Time);
 red = Data(1:end, 2);
@@ -160,7 +172,12 @@ t3b = 0*t3c;
 finger_r = 1.5;
 thumb_r = 1.6;
 n = 20;
-cyl_color = 'yellow';
+cyl_color_1 = 'yellow';
+cyl_color_2 = 'yellow';
+cyl_color_3 = 'yellow';
+cyl_color_4 = 'yellow';
+cyl_color_5 = 'yellow';
+
 closed = 1;
 lines = 0;
 
@@ -250,44 +267,89 @@ for j = 1:Size
     
     %Plotting Fingers -----------------------------------------------------
     %Pinky
-    Cylinder(xyz_begin_1_1,xyz_end_1_1,finger_r,n,cyl_color,closed,lines)
+    switch(j)
+        case PMax
+            cyl_color_1 = 'blue';
+        case PMin
+            cyl_color_1 = 'red';
+        otherwise
+            cyl_color_1 = 'yellow';
+    end
+        
+    Cylinder(xyz_begin_1_1,xyz_end_1_1,finger_r,n,cyl_color_1,closed,lines)
     hold on
-    Cylinder(xyz_begin_2_1,xyz_end_2_1,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_2_1,xyz_end_2_1,finger_r,n,cyl_color_1,closed,lines)
     hold on
-    Cylinder(xyz_begin_3_1,xyz_end_3_1,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_3_1,xyz_end_3_1,finger_r,n,cyl_color_1,closed,lines)
     hold on
     
     %Ring
-    Cylinder(xyz_begin_1_2,xyz_end_1_2,finger_r,n,cyl_color,closed,lines)
+    switch(j)
+        case RMax
+            cyl_color_2 = 'blue';
+        case RMin
+            cyl_color_2 = 'red';
+        otherwise
+            cyl_color_2 = 'yellow';
+    end
+    
+    Cylinder(xyz_begin_1_2,xyz_end_1_2,finger_r,n,cyl_color_2,closed,lines)
     hold on
-    Cylinder(xyz_begin_2_2,xyz_end_2_2,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_2_2,xyz_end_2_2,finger_r,n,cyl_color_2,closed,lines)
     hold on
-    Cylinder(xyz_begin_3_2,xyz_end_3_2,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_3_2,xyz_end_3_2,finger_r,n,cyl_color_2,closed,lines)
     hold on
     
     
     %Middle
-    Cylinder(xyz_begin_1_3,xyz_end_1_3,finger_r,n,cyl_color,closed,lines)
+    switch(j)
+        case RMax
+            cyl_color_3 = 'blue';
+        case RMin
+            cyl_color_3 = 'red';
+        otherwise
+            cyl_color_3 = 'yellow';
+    end
+    
+    Cylinder(xyz_begin_1_3,xyz_end_1_3,finger_r,n,cyl_color_3,closed,lines)
     hold on
-    Cylinder(xyz_begin_2_3,xyz_end_2_3,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_2_3,xyz_end_2_3,finger_r,n,cyl_color_3,closed,lines)
     hold on
-    Cylinder(xyz_begin_3_3,xyz_end_3_3,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_3_3,xyz_end_3_3,finger_r,n,cyl_color_3,closed,lines)
     hold on
     
     
     %Index
-    Cylinder(xyz_begin_1_4,xyz_end_1_4,finger_r,n,cyl_color,closed,lines)
+    switch(j)
+        case IMax
+            cyl_color_4 = 'blue';
+        case IMin
+            cyl_color_4 = 'red';
+        otherwise
+            cyl_color_4 = 'yellow';
+    end
+    
+    Cylinder(xyz_begin_1_4,xyz_end_1_4,finger_r,n,cyl_color_4,closed,lines)
     hold on
-    Cylinder(xyz_begin_2_4,xyz_end_2_4,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_2_4,xyz_end_2_4,finger_r,n,cyl_color_4,closed,lines)
     hold on
-    Cylinder(xyz_begin_3_4,xyz_end_3_4,finger_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_3_4,xyz_end_3_4,finger_r,n,cyl_color_4,closed,lines)
     hold on
     
     
     %Thumb
-    Cylinder(xyz_begin_1_5,xyz_end_1_5,thumb_r,n,cyl_color,closed,lines)
+    switch(j)
+        case TMax
+            cyl_color_5 = 'blue';
+        case TMin
+            cyl_color_5 = 'red';
+        otherwise
+            cyl_color_5 = 'yellow';
+    end
+    
+    Cylinder(xyz_begin_1_5,xyz_end_1_5,thumb_r,n,cyl_color_5,closed,lines)
     hold on
-    Cylinder(xyz_begin_2_5,xyz_end_2_5,thumb_r,n,cyl_color,closed,lines)
+    Cylinder(xyz_begin_2_5,xyz_end_2_5,thumb_r,n,cyl_color_5,closed,lines)
     hold on
    
     

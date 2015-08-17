@@ -31,7 +31,31 @@ Index_Finger = green;
 Thumb = white;
 Pinky = blue;
 
+[Ring_Max, RMax] = max(Ring_Finger);
+[Ring_Min, RMin] = min(Ring_Finger);
 
+[Index_Max, IMax] = max(Index_Finger);
+[Index_Min, IMin] = min(Index_Finger);
+
+[Thumb_Max, TMax] = max(Thumb);
+[Thumb_Min, TMin] = min(Thumb);
+
+[Pinky_Max, PMax] = max(Pinky);
+[Pinky_Min, PMin] = min(Pinky);
+
+RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at which Min occurred'};
+
+Ring_Finger_Data = [Ring_Max, RMax, Ring_Min, RMin];
+Index_Finger_Data = [Index_Max, IMax, Index_Min, IMin];
+Thumb_Data = [Thumb_Max, TMax, Thumb_Min, TMin];
+Pinky_Data = [Pinky_Max, PMax, Pinky_Min, PMin];
+
+%Min Max Data Table
+T2 = table(Ring_Finger_Data, Index_Finger_Data, Thumb_Data, Pinky_Data, 'RowNames', RowNames);
+writetable(T2, 'RightHandMotion_Min_Max_Data.csv', 'WriteRowNames', true);
+
+
+%Regular Data Table
 Time_Indices = (1:Size)';
 T = table(Time_Indices, Ring_Finger, Index_Finger, Thumb, Pinky);
 writetable(T, 'RightHandMotionData.csv', 'WriteRowNames', true);
