@@ -22,7 +22,7 @@ function varargout = GUI_Stroke_2(varargin)
 
 % Edit the above text to modify the response to help GUI_Stroke_2
 
-% Last Modified by GUIDE v2.5 17-Aug-2015 16:15:23
+% Last Modified by GUIDE v2.5 19-Aug-2015 00:37:02
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -519,9 +519,13 @@ function StopButton_Callback(hObject, eventdata, handles)
 % hObject    handle to StopButton (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+warndlg('To force stop click the axis of the graph you want to stop and press the Control and "C" buttons')
+
+
+% --- Executes on button press in ClearButton.
+function ClearButton_Callback(hObject, eventdata, handles)
+% hObject    handle to ClearButton (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
 cla
-warndlg('You have force stopped the graph!');
-error('You have force stopped the graph!');
-
-
-
+clc

@@ -6,7 +6,7 @@ mega = serial('/dev/cu.usbmodem1411');
 fopen(mega);
 set(mega, 'BaudRate', 115200);
 
-Size = 100;                         %Number of test cases
+Size = 1000;                         %Number of test cases
 
 %We identify each sensor by the color of its heatshrink tubing
 
@@ -45,10 +45,10 @@ Pinky = blue;
 
 RowNames = {'Max'; 'Time Index # at which Max occurred'; 'Min'; 'Time Index # at which Min occurred'};
 
-Ring_Finger_Data = [Ring_Max, RMax, Ring_Min, RMin];
-Index_Finger_Data = [Index_Max, IMax, Index_Min, IMin];
-Thumb_Data = [Thumb_Max, TMax, Thumb_Min, TMin];
-Pinky_Data = [Pinky_Max, PMax, Pinky_Min, PMin];
+Ring_Finger_Data = [Ring_Max; RMax; Ring_Min; RMin];
+Index_Finger_Data = [Index_Max; IMax; Index_Min; IMin];
+Thumb_Data = [Thumb_Max; TMax; Thumb_Min; TMin];
+Pinky_Data = [Pinky_Max; PMax; Pinky_Min; PMin];
 
 %Min Max Data Table
 T2 = table(Ring_Finger_Data, Index_Finger_Data, Thumb_Data, Pinky_Data, 'RowNames', RowNames);

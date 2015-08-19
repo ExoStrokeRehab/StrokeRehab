@@ -6,7 +6,7 @@ mega = serial('/dev/cu.usbmodem1411');
 fopen(mega);
 set(mega, 'BaudRate', 115200);
 
-Size = 100;                       
+Size = 1000;                       
 
 red = zeros(Size,1);       %Red   - ring right / index left
 green = zeros(Size,1);     %Green - index right / ring left
