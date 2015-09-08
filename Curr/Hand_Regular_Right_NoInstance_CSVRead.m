@@ -172,6 +172,7 @@ t3b = 0*t3c;
 finger_r = 1.5;
 thumb_r = 1.6;
 n = 20;
+cyl_color = 'yellow';
 cyl_color_1 = 'yellow';
 cyl_color_2 = 'yellow';
 cyl_color_3 = 'yellow';
