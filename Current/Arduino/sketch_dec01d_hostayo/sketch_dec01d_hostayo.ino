@@ -13,7 +13,7 @@ that an acknowledgement from the Host was received.
 */
 
 #include <RFduinoGZLL.h>
-
+/*
 device_t role = HOST;
 
 // pin for the Green Led
@@ -52,4 +52,4 @@ void RFduinoGZLL_onReceive(device_t device, int rssi, char *data, int len)
   {
     sstr3=data;
   }
-}
+}*/
