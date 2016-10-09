@@ -9,6 +9,6 @@ Through the combined use of microcontrollers, inertial measurement unit (IMU) se
 
 ## Poster
 
-![Alt text](Jha_Shah_Finkelberg2.png?raw=true "Format")
-![Alt text](Jha_Shah_Finkelberg2.png?raw=true "Format")
-![Alt text](Jha_Shah_Finkelberg3.png?raw=true "Format")
+![Alt text](1.png?raw=true "Format")
+![Alt text](2.png?raw=true "Format")
+![Alt text](3.png?raw=true "Format")
